@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<br><br><br>
+<h2>RESULTS</h2>
+<hr>
+<br><br>
+
+{% if context.sale_car or context.rent_car or context.sale_home or context.rent_home or context.sale_office or context.rent_office %}
+        <div class="container">
+          <h4>Advert's in: {{hashtag}}</h4>
+
+                <table class="table">
+                  <thead class="thead-dark">
+
+                    <tr>
+                      <th scope="col">id</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Advert Owner</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Advert Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for car in context.sale_car %}
+                    <tr>
+                      <td scope="row">{{car.id}}</td>
+                      <td><a href="{% url 'vehicle:sale_detail_page' car.id %}">{{car.title}}</a></td>
+                      <td>{{car.owner}}</td>
+                      <td>{{car.date}}</td>
+                      <td>For Sale House</td>
+
+                    </tr>
+                    {% endfor %}
+                    {% for car in context.rent_car %}
+                    <tr>
+                      <td scope="row">{{car.id}}</td>
+                        <td><a href="{% url 'vehicle:rental_detail_page' car.id %}">{{car.title}}</a></td>
+                      <td>{{car.owner}}</td>
+                      <td>{{car.date}}</td>
+                      <td>Rental Car</td>
+                    </tr>
+                    {% endfor %}
+                  {% for home in context.rent_home %}
+                    <tr>
+                      <td scope="row">{{home.id}}</td>
+                        <td><a href="{% url 'housing:rent_detail' home.id %}">{{home.title}}</a></td>
+                      <td>{{home.owner}}</td>
+                      <td>{{home.date}}</td>
+                      <td>Rental Home</td>
+                    </tr>
+                    {% endfor %}
+                  {% for home in context.sale_home %}
+                    <tr>
+                      <td scope="row">{{home.id}}</td>
+                        <td><a href="{% url 'housing:sale_detail' home.id %}">{{home.title}}</a></td>
+                      <td>{{home.owner}}</td>
+                      <td>{{home.date}}</td>
+                      <td>For Sale Home</td>
+                    </tr>
+                    {% endfor %}
+                  {% for office in context.sale_office %}
+                    <tr>
+                      <td scope="row">{{office.id}}</td>
+                        <td><a href="{% url 'office:sale_detail' office.id %}">{{office.title}}</a></td>
+                      <td>{{office.owner}}</td>
+                      <td>{{office.date}}</td>
+                      <td>For Sale Office</td>
+                    </tr>
+                    {% endfor %}
+                  {% for office in context.rent_office %}
+                    <tr>
+                      <td scope="row">{{office.id}}</td>
+                        <td><a href="{% url 'office:rent_detail' office.id %}">{{office.title}}</a></td>
+                      <td>{{office.owner}}</td>
+                      <td>{{office.date}}</td>
+                      <td>Rental Office</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+                </div>
+        {% else %}
+                  <div class="alert alert-danger" role="alert">
+                        {% if messages %}
+                                  <ul class="messages">
+                                      {% for message in messages %}
+                                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                      {% endfor %}
+                                  </ul>
+                                  {% endif %}
+                        {% endif %}
+                  </div>
+
+{% endblock %}
+

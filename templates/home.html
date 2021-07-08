@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+  </head>
+  <body>
+
+<main>
+
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'basics/main_page/main-01.png' %}" alt="My image" style="height:800px;;width:100%;">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Luxury Cars</h1>
+            <p>Some representative placeholder content for the first slide of the carousel.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+         <img src="{% static 'basics/main_page/main-06.jpg' %}" alt="My image" style="height:800px;width:100%;">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Your Dream Home</h1>
+            <p>Some representative placeholder content for the second slide of the carousel.</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'basics/main_page/main-13.jpg' %}" alt="My image" style="height:800px;width:100%;">
+
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>Fresh and Cozy Offices</h1>
+            <p>Some representative placeholder content for the third slide of this carousel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <br><br>
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <img src="{% static 'basics/main_page/main-08.jpg' %}" alt="My image" style="height:200px;;width:100%;">
+        <h2>Rental Cars</h2>
+        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
+        <p><a class="btn btn-secondary" href="{% url 'vehicle:vehicle_page' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="{% static 'basics/main_page/main-04.jpg' %}" alt="My image" style="height:200px;;width:100%;">
+        <h2>For Sale Suites</h2>
+        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
+        <p><a class="btn btn-secondary" href="{% url 'housing:housing_page' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+          <img src="{% static 'basics/main_page/main-16.jpg' %}" alt="My image" style="height:200px;;width:100%;">
+        <h2>On Sale Cars</h2>
+        <p>And lastly this, the third column of representative placeholder content.</p>
+        <p><a class="btn btn-secondary" href="{% url 'vehicle:vehicle_page' %}">View details &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+  </div><!-- /.container -->
+
+</main>
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  </body>
+</html>
+
+
+
+
+{% endblock %}
+

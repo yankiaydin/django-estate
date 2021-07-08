@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br><br><br>
+
+<div class="container">
+    <div class="main-body">
+
+          <div class="row gutters-sm">
+
+
+            <div class="col-md-8">
+  <div class="card mb-3">
+    <div class="card-body">
+      <h2>PERSONAL</h2>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Username</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            <a href="{% url 'member:detail' mitglied.id %}">{{ mitglied.username }}</a>
+          </div>
+        </div>
+      <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">E-mail</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{mitglied.email}}
+          </div>
+        </div>
+      <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Name and Surname</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{mitglied.first_name}} {{mitglied.last_name}}
+            </div>
+      </div>
+        <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Date Joined</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{mitglied.date_joined}}
+                </div>
+            </div>
+      <hr>
+      {% if request.user.id == mitglied.id %}
+        <a class="btn btn-info " target="__blank" href="{% url 'member:edit' request.user.id %}">Edit</a>
+      {% endif %}
+        </div>
+      </div>
+      <hr>
+
+  <div class="card mb-3">
+    <div class="card-body">
+    <h5>ADVERTS OF THE USER</h5>
+      <hr>
+
+      <div class="container">
+
+                <table class="table">
+                  <thead class="thead-dark">
+
+                    <tr>
+                      <th scope="col">id</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Author</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Advert Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for car in car_sales %}
+                    <tr>
+                      <td scope="row">{{car.id}}</td>
+                      <td><a href="{% url 'vehicle:sale_detail_page' car.id %}">{{car.title}}</a></td>
+                      <td>{{car.location}}</td>
+                      <td>{{car.date}}</td>
+                      <td>For Sale House</td>
+                      {% if request.user.id == mitglied.id %}
+                      <th><a href="{% url 'vehicle:update_sale' car.id %}"><button type="button" class="btn btn-success">Update</button></a></th>
+                      <th><a href="{% url 'vehicle:delete_sale' car.id %}"><button type="button" class="btn btn-danger">Delete</button></a></th>
+                      {% endif %}
+                    </tr>
+                    {% endfor %}
+                    {% for car in car_rents %}
+                    <tr>
+                      <td scope="row">{{car.id}}</td>
+                        <td><a href="{% url 'vehicle:rental_detail_page' car.id %}">{{car.title}}</a></td>
+                      <td>{{car.location}}</td>
+                      <td>{{car.date}}</td>
+                      <td>Rental Car</td>
+                      {% if request.user.id == mitglied.id %}
+                      <th><a href="{% url 'vehicle:update_rent' car.id %}"><button type="button" class="btn btn-success">Update</button></a></th>
+                      <th><a href="{% url 'vehicle:delete_rent' car.id %}"><button type="button" class="btn btn-danger">Delete</button></a></th>
+                      {% endif %}
+                    </tr>
+                    {% endfor %}
+                  {% for home in home_sales %}
+                    <tr>
+                      <td scope="row">{{home.id}}</td>
+                        <td><a href="{% url 'housing:sale_detail' home.id %}">{{home.title}}</a></td>
+                      <td>{{home.location}}</td>
+                      <td>{{home.date}}</td>
+                      <td>For Sale House</td>
+                      {% if request.user.id == mitglied.id %}
+                      <th><a href="{% url 'housing:update_sale' home.id %}"><button type="button" class="btn btn-success">Update</button></a></th>
+                      <th><a href="{% url 'housing:delete_sale' home.id %}"><button type="button" class="btn btn-danger">Delete</button></a></th>
+                      {% endif %}
+                    </tr>
+                    {% endfor %}
+                  {% for home in home_rents %}
+                    <tr>
+                      <td scope="row">{{home.id}}</td>
+                        <td><a href="{% url 'housing:rent_detail' home.id %}">{{home.title}}</a></td>
+                      <td>{{home.location}}</td>
+                      <td>{{home.date}}</td>
+                      <td>Rental House</td>
+                      {% if request.user.id == mitglied.id %}
+                      <th><a href="{% url 'housing:update_rent' home.id %}"><button type="button" class="btn btn-success">Update</button></a></th>
+                      <th><a href="{% url 'housing:delete_rent' home.id %}"><button type="button" class="btn btn-danger">Delete</button></a></th>
+                      {% endif %}
+                    </tr>
+                    {% endfor %}
+                  {% for office in office_sales %}
+                    <tr>
+                      <td scope="row">{{office.id}}</td>
+                        <td><a href="{% url 'office:sale_detail' office.id %}">{{office.title}}</a></td>
+                      <td>{{office.location}}</td>
+                      <td>{{office.date}}</td>
+                      <td>For Sale Office</td>
+                      {% if request.user.id == mitglied.id %}
+                      <th><a href="{% url 'office:update_sale' office.id %}"><button type="button" class="btn btn-success">Update</button></a></th>
+                      <th><a href="{% url 'office:delete_sale' office.id %}"><button type="button" class="btn btn-danger">Delete</button></a></th>
+                      {% endif %}
+                    </tr>
+                    {% endfor %}
+                  {% for office in office_rents %}
+                    <tr>
+                      <td scope="row">{{office.id}}</td>
+                        <td><a href="{% url 'office:rent_detail' office.id %}">{{office.title}}</a></td>
+                      <td>{{office.location}}</td>
+                      <td>{{office.date}}</td>
+                      <td>Rental Office</td>
+                      {% if request.user.id == mitglied.id %}
+                      <th><a href="{% url 'office:update_rent' office.id %}"><button type="button" class="btn btn-success">Update</button></a></th>
+                      <th><a href="{% url 'office:delete_rent' office.id %}"><button type="button" class="btn btn-danger">Delete</button></a></th>
+                      {% endif %}
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+                </div>
+
+
+
+
+
+        </div>
+      </div>
+
+    </div>
+    </div>
+          </div>
+        </div>
+    </div>
+
+
+{% endblock %}
